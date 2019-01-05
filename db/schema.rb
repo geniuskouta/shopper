@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 2019_01_04_084109) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_categories_on_title", unique: true
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "order_id", null: false
     t.string "first_name"
     t.string "last_name", null: false
     t.decimal "sub_total", precision: 15, scale: 2, null: false
@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(version: 2019_01_04_084109) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer "product_id", null: false
-    t.string "title", null: false
+    t.string "title", limit: 150, null: false
+    t.decimal "price", precision: 15, scale: 2, default: "0.0", null: false
     t.text "description"
-    t.decimal "price", precision: 15, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_products_on_title", unique: true
   end
 
 end
